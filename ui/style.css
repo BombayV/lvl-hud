@@ -2,6 +2,8 @@ body {
     overflow: hidden;
     margin: 0 auto;
     background-color: dimgray;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: bold;
 }
 
 .hud-container {
@@ -41,7 +43,16 @@ body {
     background: orangered;
 }
 
-.reverse {
-    background-position: left top;
-    float: right;
+.info-container {
+    position: absolute;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    bottom: 0;
+    width: calc(100% / 8);
+    height: calc(100% / 70);
+    margin-left: calc(0.5% + 0.25vw);
+    margin-bottom: calc(0.25% + 0.25vh);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
 }

@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
+
 body {
     overflow: hidden;
     margin: 0 auto;
     background-color: dimgray;
-    font-family: 'Segoe UI', sans-serif;
-    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
 }
 
 .hud-container {
@@ -55,4 +57,19 @@ body {
     margin-bottom: calc(0.25% + 0.25vh);
     background: rgba(0, 0, 0, 0.9);
     color: white;
+}
+
+.top-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    width: calc(100% / 8);
+    height: calc(100% / 70);
+    margin-left: calc(0.5% + 0.25vw);
+    margin-bottom: calc(9% + 0.25vh);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    font-size: 70%;
 }

@@ -7,8 +7,10 @@ author 'BombayV'
 repository 'https://github.com/BombayV/lvl-hud'
 
 client_script 'client.lua'
-server_script 'server.lua'
-
+server_scripts {
+	"@vrp/lib/utils.lua",
+	'server.lua'
+}
 ui_page 'ui/index.html'
 files {
 	'ui/index.html',

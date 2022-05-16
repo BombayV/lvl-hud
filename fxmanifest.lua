@@ -14,5 +14,4 @@ files {
 	'ui/index.html',
 	'ui/style.css',
 	'ui/script.js',
-	'ui/img/*.png',
 }

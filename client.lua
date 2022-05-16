@@ -47,6 +47,7 @@ local function startHud()
 					position = getMinimapAnchor()
 				})
 			end
+			TriggerServerEvent("lvl:getInfo")
 			Wait(5000)
 		end
 	end)

@@ -32,33 +32,49 @@ local function getMinimapAnchor()
 end
 
 local function startHud()
+	SendNUIMessage({
+		action = 'updateDefaults',
+		topInfo = GetPlayerName(PlayerId()) .. ' | ' .. GetPlayerServerId(PlayerId()),
+	})
+
+	-- Checks for resolution changes
 	CreateThread(function()
 		while true do
 			local resX, resY = GetActiveScreenResolution()
 			if screenRes.x == nil or screenRes.x ~= resX or screenRes.y == nil or screenRes.y ~= resY then
 				SendNUIMessage({
 					action = "updateResolution",
-					position = GetMinimapAnchor()
+					position = getMinimapAnchor()
 				})
 			end
 			Wait(5000)
 		end
 	end)
 
+	-- Updates the health and armour of the player
 	CreateThread(function()
 		while true do
 			local ped = PlayerPedId()
-			local armor = GetPedArmour(ped)
+			local shield = GetPedArmour(ped)
 			local health = (GetEntityHealth(ped) - 100) * 100 / (GetEntityMaxHealth(ped) - 100)
 			SendNUIMessage({
 				action = "updateHud",
 				health = health,
-				armor = armor
+				shield = shield
 			})
 			Wait(350)
 		end
 	end)
 end
+
+-- Returns the money on the player's account
+RegisterNetEvent('lvl:getInfo', function(info)
+	SendNUIMessage({
+		action = "status",
+		cash = info.money,
+		bank = info.bankMoney
+	})
+end)
 
 if START_BY_DEFAULT then
 	startHud()

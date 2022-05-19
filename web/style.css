@@ -3,7 +3,7 @@
 body {
     overflow: hidden;
     margin: 0 auto;
-    background-color: dimgray;
+    /* background-color: dimgray; */
     font-family: 'Lato', sans-serif;
     font-weight: 700;
 }

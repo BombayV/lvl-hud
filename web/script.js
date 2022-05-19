@@ -9,10 +9,10 @@ window.addEventListener("load", () => {
 		switch (e.data.action) {
 			case "updateHud":
 				document.getElementById("health").style.width = `${e.data.health}%`;
-				document.getElementById(("shield").style.width = `${e.data.shield}%`);
+				document.getElementById("shield").style.width = `${e.data.shield}%`;
 				break;
 			case "updateResolution":
-				updateHudPosition(e.data.Minimap);
+				updateHudPosition(e.data.position);
 				break;
 			case "updateData":
 				document.getElementById("cash").textContent = e.data.cash;

@@ -6,7 +6,7 @@ local GetEntityHealth = GetEntityHealth
 local GetEntityMaxHealth = GetEntityMaxHealth
 local CreateThread = CreateThread
 
-local screenRes = {x, y}
+local screenRes = { x, y }
 
 -- Returns data about the minimap anchor
 local function getMinimapAnchor()
@@ -32,10 +32,14 @@ local function getMinimapAnchor()
 end
 
 local function startHud()
-	SendNUIMessage({
-		action = 'updateDefaults',
-		topInfo = GetPlayerName(PlayerId()) .. ' | ' .. GetPlayerServerId(PlayerId()),
-	})
+	CreateThread(function()
+		Wait(1500)
+		SendNUIMessage({
+			action = "updateDefaults",
+			topInfo = GetPlayerName(PlayerId()) .. " | " .. GetPlayerServerId(PlayerId()),
+		})
+	end)
+	SetDisplayRadar(true)
 
 	-- Checks for resolution changes
 	CreateThread(function()
@@ -44,10 +48,10 @@ local function startHud()
 			if screenRes.x == nil or screenRes.x ~= resX or screenRes.y == nil or screenRes.y ~= resY then
 				SendNUIMessage({
 					action = "updateResolution",
-					position = getMinimapAnchor()
+					position = getMinimapAnchor(),
 				})
 			end
-			TriggerServerEvent("lvl:getInfo")
+			-- TriggerServerEvent("lvl:getInfo")
 			Wait(5000)
 		end
 	end)
@@ -61,7 +65,7 @@ local function startHud()
 			SendNUIMessage({
 				action = "updateHud",
 				health = health,
-				shield = shield
+				shield = shield,
 			})
 			Wait(350)
 		end
@@ -69,16 +73,16 @@ local function startHud()
 end
 
 -- Returns the money on the player's account
-RegisterNetEvent('lvl:getInfo', function(info)
+RegisterNetEvent("lvl:getInfo", function(info)
 	SendNUIMessage({
 		action = "status",
 		cash = info.money,
-		bank = info.bankMoney
+		bank = info.bankMoney,
 	})
 end)
 
 if START_BY_DEFAULT then
 	startHud()
 else
-	exports('startHud', startHud)
+	exports("startHud", startHud)
 end

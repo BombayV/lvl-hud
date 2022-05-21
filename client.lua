@@ -32,27 +32,23 @@ local function getMinimapAnchor()
 end
 
 local function startHud()
-	CreateThread(function()
-		Wait(1500)
-		SendNUIMessage({
-			action = "updateDefaults",
-			topInfo = GetPlayerName(PlayerId()) .. " | " .. GetPlayerServerId(PlayerId()),
-		})
-	end)
-	SetDisplayRadar(true)
-
 	-- Checks for resolution changes
 	CreateThread(function()
 		while true do
 			local resX, resY = GetActiveScreenResolution()
+			Wait(5000)
 			if screenRes.x == nil or screenRes.x ~= resX or screenRes.y == nil or screenRes.y ~= resY then
+				screenRes = { x = resX, y = resY }
 				SendNUIMessage({
 					action = "updateResolution",
 					position = getMinimapAnchor(),
 				})
+				SendNUIMessage({
+					action = "updateDefaults",
+					topInfo = GetPlayerName(PlayerId()) .. " | " .. GetPlayerServerId(PlayerId()),
+				})
 			end
-			-- TriggerServerEvent("lvl:getInfo")
-			Wait(5000)
+			TriggerServerEvent("lvl:getInfo")
 		end
 	end)
 

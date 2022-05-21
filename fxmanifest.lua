@@ -7,10 +7,10 @@ author("BombayV")
 repository("https://github.com/BombayV/lvl-hud")
 
 client_script("client.lua")
--- server_scripts({
--- 	-- "@vrp/lib/utils.lua",
--- 	"server.lua",
--- })
+server_scripts({
+	"@vrp/lib/utils.lua",
+	"server.lua",
+})
 ui_page("web/index.html")
 files({
 	"web/index.html",

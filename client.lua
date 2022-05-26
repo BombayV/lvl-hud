@@ -71,7 +71,7 @@ end
 -- Returns the money on the player's account
 RegisterNetEvent("lvl:getInfo", function(info)
 	SendNUIMessage({
-		action = "status",
+		action = "updateData",
 		cash = info.money,
 		bank = info.bankMoney,
 	})

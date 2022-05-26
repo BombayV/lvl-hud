@@ -10,5 +10,5 @@ RegisterNetEvent('lvl:getInfo', function()
 		money = vRP.getMoney({playerID}),
 		bankMoney = vRP.getBankMoney({playerID})
 	}
-	TriggerClientEvent('lvl:getInfo', player, info)
+	TriggerClientEvent('lvl:getInfo', playerID, info)
 end)
